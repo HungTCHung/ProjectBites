@@ -14,7 +14,7 @@ const handleHelloWord = (req, res) => {
 
 const handleUserPage = async (req, res) => {
   let userList = await userService.getUserList();
-  console.log(">>check userList", userList);
+  
   return res.render("user.ejs", { userList });
 };
 const handleCreateNewUser = async (req, res) => {

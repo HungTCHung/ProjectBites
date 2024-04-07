@@ -8,15 +8,22 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      // email: DataTypes.STRING,
+      // password: DataTypes.STRING,
+      // username: DataTypes.STRING,
+      // address: DataTypes.STRING,
+      // phone: DataTypes.STRING,
+      // sex: DataTypes.STRING,
+      // image: DataTypes.STRING,
+      // biography: DataTypes.STRING,
+      // groupId: DataTypes.INTEGER,
       email: {
         type: Sequelize.STRING,
       },
       password: {
         type: Sequelize.STRING,
       },
-      // sex: DataTypes.STRING,
-      // phone: DataTypes.STRING,
-      // groupId: DataTypes.INTEGER,
+
       username: {
         type: Sequelize.STRING,
       },
@@ -31,6 +38,12 @@ module.exports = {
       },
       groupId: {
         type: Sequelize.INTEGER,
+      },
+      image: {
+        type: Sequelize.STRING,
+      },
+      biography: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,

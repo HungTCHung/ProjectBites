@@ -43,13 +43,12 @@ const getUserList = async () => {
     raw: true,
     nest: true,
   });
-  console.log(">>check new users", newUser);
-  console.log(">>> check new g", r);
+  
   try {
     let users = [];
     users = await db.User.findAll({});
 
-    console.log("check users", users);
+    
     return users;
   } catch (e) {
     console.log(">>error from get UserList ");
