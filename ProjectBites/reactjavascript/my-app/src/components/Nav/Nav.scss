@@ -1,0 +1,73 @@
+.nav-container {
+  .nav-content {
+    margin-left: 50px;
+    margin-top: 40px;
+    display: flex;
+    gap: 80px;
+    border: solid yellow 1px;
+    width: fit-content;
+    padding: 10px;
+    background-color: grey;
+
+    .nav-content-left {
+      display: flex;
+      gap: 70px;
+      .nav-logo {
+        border: solid red 1px;
+        margin-right: 40px;
+        padding: 10px;
+      }
+      .nav-home {
+        border: solid red 1px;
+        margin-right: 1px;
+        padding: 10px;
+      }
+      .nav-247 {
+        border: solid red 1px;
+        margin-right: 1px;
+        padding: 10px;
+      }
+      .nav-premium {
+        padding: 10px;
+        border: solid red 1px;
+      }
+      .nav-dailydigest {
+        border: solid red 1px;
+        padding: 10px;
+      }
+      .nav-airdrop {
+        border: solid red 1px;
+        padding: 10px;
+      }
+      .nav-mintnft {
+        padding: 10px;
+        border: solid red 1px;
+      }
+      .nav-download {
+        padding: 10px;
+        border: solid red 1px;
+      }
+      .nav-about {
+        padding: 10px;
+        border: solid red 1px;
+      }
+    }
+    .nav-content-right {
+      display: flex;
+      gap: 20px;
+      .nav-search {
+        padding: 10px;
+        border: solid green 1px;
+      }
+      .nav-notification {
+        padding: 10px;
+        border: solid green 1px;
+      }
+      .nav-usercontent {
+        border: solid green 1px;
+        padding: 10px;
+        border-radius: 3px;
+      }
+    }
+  }
+}
