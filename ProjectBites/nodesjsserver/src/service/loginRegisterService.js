@@ -7,6 +7,7 @@ const hashUserPassword = (userPassword) => {
   let hashPassword = bcrypt.hashSync(userPassword, salt);
   return hashPassword;
 };
+
 const checkEmailExist = async (userEmail) => {
   let user = await db.User.findOne({
     where: { email: userEmail },

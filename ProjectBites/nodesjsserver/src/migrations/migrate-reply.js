@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("Replice", {
+    await queryInterface.createTable("Reply", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -14,7 +14,7 @@ module.exports = {
       commentRootId: {
         type: Sequelize.INTEGER,
       },
-      userIdReplice: {
+      userIdReply: {
         type: Sequelize.INTEGER,
       },
       content: {
@@ -31,6 +31,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("Replice");
+    await queryInterface.dropTable("Reply");
   },
 };

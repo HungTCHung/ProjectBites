@@ -1,5 +1,5 @@
 import loginRegisterService from "../service/loginRegisterService";
-
+import loginService from "../../src/service/loginService";
 const testAPI = (req, res) => {
   return res.status(200).json({
     message: "oke",
@@ -37,21 +37,38 @@ const handleRegister = async (req, res) => {
     });
   }
 };
+
 const handleLogin = async (req, res) => {
   try {
-    let data = await loginRegisterService.handleUserLogin(req.body);
+    let data = await loginService.handleUserLogin(req.body);
+    console.log("check data", data);
     return res.status(200).json({
       EM: data.EM,
       EC: data.EC,
       DT: data.DT,
     });
   } catch (e) {
+    console.log(e);
     return res.status(500).json({
-      EM: "Error from handleLogin ",
-      EC: -1,
+      EM: "Error from handlelogin 123",
+      EC: "-1",
       DT: "",
     });
   }
+  // try {
+  //   let data = await loginRegisterService.handleUserLogin(req.body);
+  //   return res.status(200).json({
+  //     EM: data.EM,
+  //     EC: data.EC,
+  //     DT: data.DT,
+  //   });
+  // } catch (e) {
+  //   return res.status(500).json({
+  //     EM: "Error from handleLogin ",
+  //     EC: -1,
+  //     DT: "",
+  //   });
+  // }
 };
 module.exports = {
   testAPI,
