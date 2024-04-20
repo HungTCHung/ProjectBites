@@ -3,7 +3,8 @@ import express from "express";
 import configViewEngine from "./config/viewEngine";
 import initWebRoutes from "./routes/web";
 import initApiRoutes from "./routes/api";
-import connection from "./config/connectDB";
+// import connection from "./config/connectDB";
+const connection = require("./config/DB");
 import configCors from "./config/cors";
 
 import bodyParser from "body-parser";
@@ -16,7 +17,7 @@ configViewEngine(app);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-connection();
+// connection();
 initWebRoutes(app);
 initApiRoutes(app);
 

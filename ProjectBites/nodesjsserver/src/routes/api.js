@@ -1,5 +1,6 @@
 import express from "express";
 import apiController from "../controller/apiController";
+import test from "../controller/test";
 import userController from "../controller/userController";
 import GroupController from "../controller/GroupController";
 import newApiController from "../controller/newApiController";
@@ -25,7 +26,8 @@ const initApiRoutes = (app) => {
   // router.get("/group/read", GroupController.readFunc);
   ////////////////////////////////////
   router.post("/login", apiController.handleLogin);
-
+  router.post("/test", test.getDataFromUser);
+  router.post("/")
   ///////////////////////////
   return app.use("/api/v1/", router);
 };

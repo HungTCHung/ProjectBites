@@ -12,11 +12,15 @@ module.exports = {
       //   image: DataTypes.STRING,
       //   content: DataTypes.STRING,
       //   hastag: DataTypes.STRING,
-      authorId: {
+      peopleInvolvePost: {
         type: Sequelize.INTEGER,
       },
+      groupid: {
+        type: Sequelize.INTEGER,
+      },
+
       image: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DATE,
       },
       // sex: DataTypes.STRING,

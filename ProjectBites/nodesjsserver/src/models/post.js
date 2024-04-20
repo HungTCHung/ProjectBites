@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Post.init(
     {
-      authorId: DataTypes.INTEGER,
+      peopleInvolvePost: DataTypes.INTEGER,
+      groupid: DataTypes.INTEGER,
       image: DataTypes.STRING,
       content: DataTypes.STRING,
       hastag: DataTypes.STRING,

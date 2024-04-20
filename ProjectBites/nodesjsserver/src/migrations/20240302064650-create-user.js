@@ -38,6 +38,7 @@ module.exports = {
       },
       groupId: {
         type: Sequelize.INTEGER,
+        allowNull: true,
       },
       image: {
         type: Sequelize.STRING,

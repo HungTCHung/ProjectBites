@@ -1,5 +1,6 @@
 import db from "../models/index";
 import bcrypt from "bcryptjs";
+import { getGroupWithRole } from "./JWTService";
 const handleUserLogin = async (dataFromClient) => {
   try {
     console.log("check dataFromClient", dataFromClient);
@@ -17,6 +18,8 @@ const handleUserLogin = async (dataFromClient) => {
       });
 
       if (userPassword) {
+        await getGroupWithRole(user);
+
         return {
           EM: "oke!",
           EC: 0,
