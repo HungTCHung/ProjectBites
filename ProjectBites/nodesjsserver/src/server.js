@@ -17,6 +17,12 @@ configViewEngine(app);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+//
+//config cookieParser
+app.use(cookieParser());
+//////
+
+
 // connection();
 initWebRoutes(app);
 initApiRoutes(app);

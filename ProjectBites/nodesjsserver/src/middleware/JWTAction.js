@@ -1,13 +1,13 @@
 require("dotenv").config();
 import jwt from "jsonwebtoken";
 
-const createJWT = () => {
-  let payload = { name: "Hung", address: "Bg" };
+const nonSecurePath = ["/logout", "/login", "register"];
+
+const createJWT = (payload) => {
   let key = process.env.JWT_SECRET;
   let token = null;
   try {
     token = jwt.sign(payload, key);
-    console.log("check token", token);
   } catch (err) {
     console.log(err);
   }
@@ -15,15 +15,41 @@ const createJWT = () => {
 };
 const verifyToken = (token) => {
   let key = process.env.JWT_SECRET;
-  let data = null;
+  let decoded = null;
   try {
-    let decoded =jwt.verify(token, key);
-    data=decoded ;
+    let decoded = jwt.verify(token, key);
   } catch (e) {
     console.log(e);
   }
-  return data;
+  return decoded;
 };
-module.exports{
-  createJWT,verifyToken
-}
+const checkUserJWT = (req, res, next) => {
+  let cookies = req.cookies;
+  if (cookies && cookies.jwt) {
+    let token = cookies.jwt;
+    let decoded = verifyToken(token);
+    if (decoded) {
+      req.user = decoded;
+
+      next();
+    } else {
+      return res.status(401).json({
+        EC: -1,
+        DT: "",
+        EM: "Not authenticated the user",
+      });
+    }
+  } else {
+    return res.status(401).json({
+      EC: -1,
+      DT: "",
+      EM: "Not authenticated the user",
+    });
+  }
+};
+
+module.exports = {
+  createJWT,
+  verifyToken,
+  checkUserJWT,
+};

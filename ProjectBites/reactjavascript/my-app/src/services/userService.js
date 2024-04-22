@@ -1,7 +1,7 @@
-import axios from "axios";
-
+// import axios from "axios";
+import axios from "../setup/axios";
 const loginUser = (email, password) => {
-  return axios.post("http://localhost:8080/api/v1/login", {
+  return axios.post("/api/v1/login", {
     email,
     password,
   });

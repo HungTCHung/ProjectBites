@@ -1,9 +1,10 @@
+require("dotenv").config;
 import db from "../models/index";
 import bcrypt from "bcryptjs";
 import { getGroupWithRole } from "./JWTService";
+import { createJWT } from "../middleware/JWTAction";
 const handleUserLogin = async (dataFromClient) => {
   try {
-    console.log("check dataFromClient", dataFromClient);
     let user = await db.User.findOne({
       where: {
         email: dataFromClient.email,
@@ -18,13 +19,21 @@ const handleUserLogin = async (dataFromClient) => {
       });
 
       if (userPassword) {
-        await getGroupWithRole(user);
+        let groupWithRole = await getGroupWithRole(user);
 
+        let payload = {
+          groupWithRole,
+          expiresIn: process.env.JWT_EXPIRES_IN,
+        };
+        let token = createJWT(payload);
         return {
           EM: "oke!",
           EC: 0,
           DT: {
-            access_token: "",
+            email: user.email,
+            username: user.username,
+            access_token: token,
+            groupWithRole,
           },
         };
       }

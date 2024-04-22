@@ -1,5 +1,6 @@
 import express from "express";
 import apiController from "../controller/apiController";
+import { checkUserJWT } from "../middleware/JWTAction";
 import test from "../controller/test";
 import userController from "../controller/userController";
 import GroupController from "../controller/GroupController";
@@ -11,6 +12,14 @@ const router = express.Router();
  * @param {*} app :express app
  *
  */
+
+// const checkUserLogin = (req, res, next) => {
+//   const nonSecurePaths = ["/", "/test", "/login"];
+//   if (nonSecurePaths.includes(req.path)) return next();
+
+//   //authenticate role
+//   next();
+// };
 const initApiRoutes = (app) => {
   router.get("/test-api", apiController.testAPI);
   //rest API
@@ -26,8 +35,9 @@ const initApiRoutes = (app) => {
   // router.get("/group/read", GroupController.readFunc);
   ////////////////////////////////////
   router.post("/login", apiController.handleLogin);
+  router.post("/logout", apiController.handleLogout);
   router.post("/test", test.getDataFromUser);
-  router.post("/")
+  router.post("/");
   ///////////////////////////
   return app.use("/api/v1/", router);
 };
