@@ -6,12 +6,22 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
-import Nav from "../src/components/Nav/Nav";
+import NavHeader from "./components/NavHeader/NavHeader";
 function App() {
   return (
-    <div className="Nav">
-      <Nav />
-    </div>
+    // <div className="navheader">
+    //   <NavHeader />
+    // </div>
+    <>
+      <Router>
+        <>
+          <div className="app-header">
+            <NavHeader />
+          </div>
+          <div className="app-container"></div>
+        </>
+      </Router>
+    </>
   );
 }
 
