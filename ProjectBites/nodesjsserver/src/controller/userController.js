@@ -80,10 +80,21 @@ const deleteFunc = async (req, res) => {
     });
   }
 };
-
+//////
+const getUserAccount = async (req, res) =>   {
+  // console.log("check req", req);
+  // return res.status(200)({
+  //   EM: "oke",
+  //   EC: 0,
+  //   DT: {
+  //     access_token: req.token,
+  //   },
+  // });
+};
 module.exports = {
   readFunc,
   createFunc,
   updateFunc,
   deleteFunc,
+  getUserAccount,
 };

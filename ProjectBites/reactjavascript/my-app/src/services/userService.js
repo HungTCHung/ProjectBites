@@ -6,4 +6,7 @@ const loginUser = (email, password) => {
     password,
   });
 };
-export { loginUser };
+const getUserAccount = () => {
+  return axios.post("/api/v1/account", {});
+};
+export { loginUser, getUserAccount };
