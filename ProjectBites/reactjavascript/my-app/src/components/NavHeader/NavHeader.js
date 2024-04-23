@@ -107,16 +107,41 @@ const NavHeader = () => {
                 </NavLink>
               </Nav>
               <Nav>
-                <Nav.Item className="nav-link">Hello user</Nav.Item>
-                <NavDropdown title="Setting" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">
-                    Do something
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Log out
-                  </NavDropdown.Item>
-                </NavDropdown>
+                {user.isAuthenticated ? (
+                  <>
+                    <Nav.Item className="nav-link">
+                      Welcome {user.account.username}
+                    </Nav.Item>
+                    <Nav.Item className="log-out">
+                      <span
+                        className="btn-logout"
+                        onClick={() => handleLogout()}
+                      >
+                        logout
+                      </span>
+                    </Nav.Item>
+                    <NavDropdown title="Setting" id="basic-nav-dropdown">
+                      <NavDropdown.Item href="#action/3.1">
+                        Do something
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item href="#action/3.4">
+                        Do something
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => {
+                        setIsShowModalLogin(true);
+                      }}
+                    >
+                      Login
+                    </button>
+                  </>
+                )}
               </Nav>
             </Navbar.Collapse>
           </Container>
