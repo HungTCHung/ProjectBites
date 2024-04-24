@@ -6,17 +6,20 @@ import { UserContext } from "../../context/userContext";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import logo from "../../img/logo.jpg";
 import { NavLink, Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import { Route } from "react-router-dom/cjs/react-router-dom.min";
+import WritePost from "../writepost/write";
 const NavHeader = () => {
   const [isShowModalLogin, setIsShowModalLogin] = useState(false);
   const [isShowUserInfo, setIsShowUserInfo] = useState(false);
   const { logout } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const handleCloseModal = () => {
     setIsShowModalLogin(false);
   };
   const onHideModalUser = () => {
     setIsShowModalLogin(false);
   };
-  const { user } = useContext(UserContext);
+
   const loginUserSuccess = () => {
     setIsShowUserInfo(true);
   };
@@ -25,6 +28,7 @@ const NavHeader = () => {
     setIsShowUserInfo(false);
     logout();
   };
+
   const changeLinkToWrite = () => {};
   // <div className="nav-content">
   //         <div className="nav-content-left">
@@ -120,13 +124,16 @@ const NavHeader = () => {
                         logout
                       </span>
                     </Nav.Item>
-                    <NavDropdown title="Setting" id="basic-nav-dropdown">
+                    <NavDropdown
+                      title={user.account.username}
+                      id="basic-nav-dropdown"
+                    >
                       <NavDropdown.Item href="#action/3.1">
                         Do something
                       </NavDropdown.Item>
                       <NavDropdown.Divider />
-                      <NavDropdown.Item href="#action/3.4">
-                        Do something
+                      <NavDropdown.Item href="write-post">
+                        hello
                       </NavDropdown.Item>
                     </NavDropdown>
                   </>

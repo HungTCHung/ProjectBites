@@ -30,12 +30,30 @@ const UserProvider = ({ children }) => {
       account: {},
     });
   };
+
+  useEffect(() => {
+    let dataFromLocalStorage = JSON.parse(
+      localStorage.getItem("UserDataLogin")
+    );
+    if (dataFromLocalStorage) {
+      setUser({
+        isAuthenticated: dataFromLocalStorage.isAuthenticated,
+        token: dataFromLocalStorage.token,
+        account: dataFromLocalStorage.account,
+      });
+    } else {
+      setUser({
+        isAuthenticated: false,
+        token: "",
+        account: {},
+      });
+    }
+  }, []);
+
   // const fetchUser = async () => {
   //   let response = await getUserAccount();
   // };
-  useEffect(() => {
-    console.log("check user lan n", user);
-  }, [user]);
+
   return (
     <UserContext.Provider value={{ user, loginContext, logout }}>
       {children}

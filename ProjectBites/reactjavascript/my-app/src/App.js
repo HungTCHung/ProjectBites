@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import NavHeader from "./components/NavHeader/NavHeader";
+import AppRoute from "./components/appRoute/appRoute";
 function App() {
   return (
     // <div className="navheader">
@@ -18,7 +19,9 @@ function App() {
           <div className="app-header">
             <NavHeader />
           </div>
-          <div className="app-container"></div>
+          <div className="app-container">
+            <AppRoute />
+          </div>
         </>
       </Router>
     </>
