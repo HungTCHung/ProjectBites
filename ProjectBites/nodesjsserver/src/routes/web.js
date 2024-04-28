@@ -1,30 +1,30 @@
-import express from "express";
-import homeController from "../controller/homeController";
-import apiController from "../controller/apiController";
+// import express from "express";
+// import homeController from "../controller/homeController";
+// import apiController from "../controller/apiController";
 
-const router = express.Router();
+// const router = express.Router();
 
-/**
- *
- * @param {*} app :express app
- *
- */
-const initWebRoutes = (app) => {
-  router.get("/test", homeController.testDB);
-  router.get("/", homeController.handleHelloWord);
+// /**
+//  *
+//  * @param {*} app :express app
+//  *
+//  */
+// const initWebRoutes = (app) => {
+//   router.get("/test", homeController.testDB);
+//   router.get("/", homeController.handleHelloWord);
 
-  router.get("/user", homeController.handleUserPage);
-  router.post("/users/create-user", homeController.handleCreateNewUser);
-  router.post("/delete-user/:id", homeController.handleDeleteUser);
-  router.get("/update-user/:id", homeController.getUpdateUserPage);
-  router.post("/user/update-user", homeController.handleUpdateUser);
+//   router.get("/user", homeController.handleUserPage);
+//   router.post("/users/create-user", homeController.handleCreateNewUser);
+//   router.post("/delete-user/:id", homeController.handleDeleteUser);
+//   router.get("/update-user/:id", homeController.getUpdateUserPage);
+//   router.post("/user/update-user", homeController.handleUpdateUser);
 
-  //rest API
-  //get R,post CC,PUT U, DELETE D
+//   //rest API
+//   //get R,post CC,PUT U, DELETE D
 
-  router.get("/api/test-api", apiController.testAPI);
+//   router.get("/api/test-api", apiController.testAPI);
 
-  return app.use("/", router);
-};
+//   return app.use("/", router);
+// };
 
-export default initWebRoutes;
+// export default initWebRoutes;

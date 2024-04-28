@@ -19,10 +19,10 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
 
-      image: {
-        allowNull: true,
-        type: Sequelize.DATE,
-      },
+      // image: {
+      //   allowNull: true,
+      //   type: Sequelize.DATE,
+      // },
       // sex: DataTypes.STRING,
       // phone: DataTypes.STRING,
       // groupId: DataTypes.INTEGER,

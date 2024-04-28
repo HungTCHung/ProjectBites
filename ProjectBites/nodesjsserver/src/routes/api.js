@@ -1,10 +1,13 @@
 import express from "express";
 import apiController from "../controller/apiController";
 import { checkUserJWT } from "../middleware/JWTAction";
+import upload from "../middleware/multer";
 import test from "../controller/test";
 import userController from "../controller/userController";
 import GroupController from "../controller/GroupController";
 import newApiController from "../controller/newApiController";
+
+
 const router = express.Router();
 
 /**
@@ -21,7 +24,7 @@ const router = express.Router();
 //   next();
 // };
 const initApiRoutes = (app) => {
-  router.get("/test-api", apiController.testAPI);
+  // router.get("/test-api", apiController.testAPI);
   //rest API
   //get R,post CC,PUT U, DELETE D
   // router.post("/register", apiController.handleRegister);
@@ -35,9 +38,11 @@ const initApiRoutes = (app) => {
   // router.get("/group/read", GroupController.readFunc);
   ////////////////////////////////////
   router.post("/login", apiController.handleLogin);
-  router.post("/logout", apiController.handleLogout);
-  router.post("/test", test.getDataFromUser);
-  router.get("/account", userController.getUserAccount);
+  // router.post("/logout", apiController.handleLogout);
+  // router.post("/test", test.getDataFromUser);
+  // router.post("/upload", upload.single("image"), (req, res) => {
+  //   console.log(req.file);
+  // });
   router.post("/");
   ///////////////////////////
   return app.use("/api/v1/", router);

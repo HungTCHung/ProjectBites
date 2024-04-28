@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      User.belongsTo(models.Group);
+      // User.belongsTo(models.Group);
     }
   }
   User.init(
@@ -21,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
       sex: DataTypes.STRING,
       image: DataTypes.STRING,
       biography: DataTypes.STRING,
-      groupId: DataTypes.INTEGER,
     },
     {
       sequelize,

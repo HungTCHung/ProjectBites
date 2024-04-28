@@ -7,18 +7,19 @@ import { UserContext } from "../../context/userContext";
 const ModalUserLogin = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+
   const { loginContext } = useContext(UserContext);
   const handeCloseModalLogin = () => {
     props.onHide();
   };
   const handleConfirmLogin = async () => {
     //api login
-   
+
     let res = await loginUser(email, password);
     console.log("check res", res);
 
     if (res && res.data.EC === 0) {
+      let userId = res.data.DT.userId;
       let username = res.data.DT.username;
       let email = res.data.DT.email;
       let token = res.data.DT.access_token;
@@ -26,14 +27,12 @@ const ModalUserLogin = (props) => {
       let userDataLogin = {
         isAuthenticated: true,
         token: token,
-        account: { groupWithRole, username, email },
+        account: { userId, groupWithRole, username, email },
       };
       localStorage.setItem("UserDataLogin", JSON.stringify(userDataLogin));
-      
 
       loginContext(userDataLogin);
       handeCloseModalLogin();
-     
     }
   };
   return (

@@ -1,0 +1,19 @@
+.container {
+  .content {
+    display: flex;
+    .content-left {
+    }
+    .content-right {
+      .upload-image {
+        .image-preview {
+          .image-setting {
+          }
+        }
+      }
+      .image-size {
+        height: 30px;
+        width: 20px;
+      }
+    }
+  }
+}

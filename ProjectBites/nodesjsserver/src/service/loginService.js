@@ -3,14 +3,16 @@ import db from "../models/index";
 import bcrypt from "bcryptjs";
 import { getGroupWithRole } from "./JWTService";
 import { createJWT } from "../middleware/JWTAction";
+
 const handleUserLogin = async (dataFromClient) => {
+  console.log("check data", dataFromClient);
   try {
     let user = await db.User.findOne({
       where: {
         email: dataFromClient.email,
       },
     });
-
+    console.log("check user nodejs ", user);
     if (user) {
       let userPassword = await db.User.findOne({
         where: {
@@ -30,6 +32,7 @@ const handleUserLogin = async (dataFromClient) => {
           EM: "oke!",
           EC: 0,
           DT: {
+            userId: user.id,
             email: user.email,
             username: user.username,
             access_token: token,
@@ -46,7 +49,7 @@ const handleUserLogin = async (dataFromClient) => {
   } catch (e) {
     console.log(e);
     return {
-      EM: "loi handleUserLogin",
+      EM: "loi handleUserLogin 123",
       EC: -1,
       DT: "",
     };

@@ -36,10 +36,7 @@ module.exports = {
       phone: {
         type: Sequelize.STRING,
       },
-      groupId: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-      },
+
       image: {
         type: Sequelize.STRING,
       },
