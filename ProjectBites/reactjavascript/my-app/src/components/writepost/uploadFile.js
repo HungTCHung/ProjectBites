@@ -36,13 +36,15 @@ function UploadImages(props) {
     files.forEach((file) => {
       formdata.append("image", file);
     });
-
+    console.log("check text content", textContent, htmlContent);
     formdata.append("userId", userId);
-    // formdata.append("textContent", textContent);
-    // formdata.append("textContent", textContent);
+    formdata.append("textContent", textContent);
+    formdata.append("htmlContent", htmlContent);
     console.log("check form data", formdata);
-    let x = await uploadImage( formdata);
-    console.log("check x", x);
+    let res = await uploadImage(formdata);
+    // if (res.EC === 0) {
+    //   //redirect page va fetch lai data from user
+    // }
   };
   const getImage123 = async () => {
     let data = await getImage();

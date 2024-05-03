@@ -50,17 +50,44 @@ app.post("/upload", upload.array("image"), async (req, res) => {
   // console.log(req.body.userId);
   const images = req.files;
   const userId = req.body.userId;
-  console.log(req.body);
+
+  const textContent = req.body.textContent;
+  const htmlContent = req.body.htmlContent;
+  // console.log(req.body);
+
   try {
-    for (let i = 0; i < images.length; i++) {
-      const image = images[i];
-      await insertImageIntoDatabase(userId, image);
+    if (textContent && htmlContent) {
+      connection.query(
+        `
+            INSERT INTO  Post_Content (postId, content,contentEditor, createdAt, updatedAt) VALUES (?, ?,?, NOW(), NOW())
+            `,
+        [userId, textContent, htmlContent] // Assuming 'filename' is the property containing the filename after multer upload
+      );
+    } else {
+      res.json({
+        EM: "Upload post failed",
+        EC: -1,
+        DT: {},
+      });
     }
-    res.json({
-      EM: "Upload image success",
-      EC: 0,
-      DT: {},
-    });
+    if (images.length > 0) {
+      for (let i = 0; i < images.length; i++) {
+        const image = images[i];
+        await insertImageIntoDatabase(userId, image);
+      }
+      res.json({
+        EM: "Upload Post success",
+        EC: 0,
+        DT: {},
+      });
+    } else {
+      connection.query(
+        `
+            INSERT INTO Image (postId, image, createdAt, updatedAt) VALUES (?, null, NOW(), NOW())
+            `,
+        [userId] // Assuming 'filename' is the property containing the filename after multer upload
+      );
+    }
   } catch (error) {
     console.log(error);
     res.json({
@@ -72,6 +99,7 @@ app.post("/upload", upload.array("image"), async (req, res) => {
 });
 const insertImageIntoDatabase = (userId, image) => {
   return new Promise((resolve, reject) => {
+    // const imageName = null;
     connection.query(
       `
           INSERT INTO Image (postId, image, createdAt, updatedAt) VALUES (?, ?, NOW(), NOW())

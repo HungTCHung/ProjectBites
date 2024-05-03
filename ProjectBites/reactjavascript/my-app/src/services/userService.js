@@ -16,6 +16,7 @@ const uploadImage = (formdata) => {
     .then((res) => {
       if (res && res.data.EC === 0) {
         console.log("Success");
+        return res;
       } else {
         console.log("Failed");
       }
