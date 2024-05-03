@@ -45,41 +45,48 @@ const upload = multer({
   storage: storage,
 });
 
-app.post("/upload", upload.single("image"), (req, res) => {
-  console.log(req.file);
+app.post("/upload", upload.array("image"), async (req, res) => {
+  console.log(req.files);
   // console.log(req.body.userId);
-  let image = req.file.filename;
-  let userId = req.body.userId;
-
+  const images = req.files;
+  const userId = req.body.userId;
+  console.log(req.body);
+  try {
+    for (let i = 0; i < images.length; i++) {
+      const image = images[i];
+      await insertImageIntoDatabase(userId, image);
+    }
+    res.json({
+      EM: "Upload image success",
+      EC: 0,
+      DT: {},
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      EM: "Error from update image",
+      EC: -1,
+      DT: {},
+    });
+  }
+});
+const insertImageIntoDatabase = (userId, image) => {
   return new Promise((resolve, reject) => {
     connection.query(
       `
-      INSERT INTO Image (postId, image, createdAt, updatedAt) VALUES (?, ?, NOW(), NOW())
-      `,
-      [userId, image], // Pass parameters as an array
+          INSERT INTO Image (postId, image, createdAt, updatedAt) VALUES (?, ?, NOW(), NOW())
+          `,
+      [userId, image.filename], // Assuming 'filename' is the property containing the filename after multer upload
       (error, results, fields) => {
-        // Corrected callback parameters
         if (error) {
-          reject(
-            res.json({
-              EM: "Error form update image",
-              EC: -1,
-              DT: {},
-            })
-          );
+          reject(error);
         } else {
-          resolve(
-            res.json({
-              EM: "Upload image success",
-              EC: 0,
-              DT: {},
-            })
-          );
+          resolve();
         }
       }
     );
   });
-});
+};
 
 app.get("/get-image", (req, res) => {
   return new Promise((resolve, reject) => {

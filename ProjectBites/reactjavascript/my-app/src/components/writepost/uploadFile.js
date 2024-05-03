@@ -3,42 +3,45 @@ import { uploadImage, getImage } from "../../services/userService";
 import { UserContext } from "../../context/userContext";
 import userService from "../../services/userService";
 import { forEach } from "lodash";
+
 import "./uploadFile.scss";
-function UploadImages() {
+function UploadImages(props) {
+  const htmlContent = props.htmlContent;
+  const textContent = props.textContent;
+  console.log("check123", htmlContent, textContent);
   const { user } = useContext(UserContext);
   const [file, setFile] = useState();
   const [images, setImages] = useState([]);
+  const [files, setFiles] = useState([]);
   let previewImage = [];
   let galleryImage = [];
   let [dataImage, setDataImage] = useState(galleryImage);
   const handleFile = async (e) => {
     // previewImage.push(e.target.files[0].name);
 
-    await setFile(URL.createObjectURL(e.target.files[0]));
+    const selectedFile = e.target.files[0];
+    const newFiles = [...files, selectedFile];
+    setFiles(newFiles);
+    console.log("check files", files);
     const newImages = [...images];
     newImages.push(URL.createObjectURL(e.target.files[0]));
     setImages(newImages);
-
-    let a = e.target.files[0];
-    setFile(e.target.files[0]);
-    previewImage.push(e.target.files[0]);
-
-    console.log("check arr", previewImage);
   };
 
   const handleUpload = async () => {
     const formdata = new FormData();
     let userId = user.account.userId;
     console.log("check userId", userId);
-    console.log("check file 1", file);
-    // formdata.append("image", JSON.stringify(images));
-    // for (let i = 0; i < images.length; i++) {
-    //   formdata.append(`${i}`, images[i]);
-    // }
-    formdata.append("image", file);
+
+    files.forEach((file) => {
+      formdata.append("image", file);
+    });
+
     formdata.append("userId", userId);
+    // formdata.append("textContent", textContent);
+    // formdata.append("textContent", textContent);
     console.log("check form data", formdata);
-    let x = await uploadImage(formdata);
+    let x = await uploadImage( formdata);
     console.log("check x", x);
   };
   const getImage123 = async () => {
@@ -88,7 +91,9 @@ function UploadImages() {
         ))}
       </div>
 
-      <button onClick={handleUpload}>Upload</button>
+      <button onClick={handleUpload} className="btn btn-primary">
+        create post
+      </button>
       <div>
         <button className="btn btn-primary" onClick={() => getImage123()}>
           get image

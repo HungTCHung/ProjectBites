@@ -8,13 +8,14 @@ import UploadImages from "./uploadFile";
 import "react-markdown-editor-lite/lib/index.css";
 import Editor from "react-markdown-editor-lite";
 import "./write.scss";
+
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 const WritePost = (props) => {
   let [htmlContent, setHtmlContent] = useState("");
   let [textContent, setTextContent] = useState("");
 
-  let handleEditorChange = ({ html, text }) => {
+  let handleEditorChange = async ({ html, text }) => {
     console.log("handleEditorChange", html);
     setHtmlContent(html);
     console.log("check text", text);
@@ -49,7 +50,7 @@ const WritePost = (props) => {
             />
           </div>
           <div className="content-right">
-            <UploadImages />
+            <UploadImages textContent={textContent} htmlContent={htmlContent} />
           </div>
         </div>
       </div>

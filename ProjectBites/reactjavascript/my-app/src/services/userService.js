@@ -25,9 +25,12 @@ const uploadImage = (formdata) => {
 const getImage = () => {
   return axios.get("/get-image");
 };
+const createPost = (textContent, htmlContent) => {
+  return axios.post("/create-post");
+};
 
 // const FileUploadService = {
 //   upload,
 //   getFiles,
 // };
-export { loginUser, getUserAccount, uploadImage, getImage };
+export { loginUser, getUserAccount, uploadImage, getImage, createPost };
