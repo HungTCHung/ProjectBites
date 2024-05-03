@@ -11,7 +11,7 @@ const UserProvider = ({ children }) => {
     let dataFromLocalStorage = JSON.parse(
       localStorage.getItem("UserDataLogin")
     );
-    console.log("isAUthen2", dataFromLocalStorage);
+    console.log("isAUthen2..", dataFromLocalStorage);
     console.log("isAUthen2", dataFromLocalStorage.isAuthenticated);
     console.log("isAUthen3", dataFromLocalStorage.token);
     console.log("isauthe4", dataFromLocalStorage.account.groupWithRole);
@@ -20,8 +20,10 @@ const UserProvider = ({ children }) => {
       token: dataFromLocalStorage.token,
       account: dataFromLocalStorage.account,
     });
-    console.log("check user from 123 ", user);
   };
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   const logout = () => {
     setUser({

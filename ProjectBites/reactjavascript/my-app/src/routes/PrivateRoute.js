@@ -1,18 +1,28 @@
 import React, { useContext } from "react";
+import { Route, Redirect, useHistory } from "react-router-dom";
 import { UserContext } from "../context/userContext";
-import { useState } from "react";
 import { Router } from "react-router-dom/cjs/react-router-dom.min";
-// import toast from "react-toastify";
+
 const PrivateRoute = (props) => {
+  let history = useHistory();
   const { user } = useContext(UserContext);
-  if (user && user.isAuthenticated === true) {
+
+  if (user && user.isAuthenticated) {
     return (
       <>
-        <Router path={props.path} component={props.component} />
+        <Route path={props.path}>{props.component}</Route>
       </>
     );
-  } else {
-    alert("vkl");
+  }
+  if (!user && user.isAuthenticated !== 0) {
+    history.push("/");
+  }
+  // if (user.isAuthenticated !== 0) {
+  //   history.push("/");
+  // }
+  if (user && user.isAuthenticated) {
+    history.push("/write-post");
   }
 };
+
 export default PrivateRoute;
