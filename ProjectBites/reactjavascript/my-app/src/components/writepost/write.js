@@ -11,11 +11,15 @@ import "./write.scss";
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 const WritePost = (props) => {
-  let [postContent, setPostContent] = useState("");
-  let [rawPostContent, setRawPostContent] = useState("");
+  let [htmlContent, setHtmlContent] = useState("");
+  let [textContent, setTextContent] = useState("");
 
   let handleEditorChange = ({ html, text }) => {
-    console.log("handleEditorChange", html, text);
+    console.log("handleEditorChange", html);
+    setHtmlContent(html);
+    console.log("check text", text);
+    setTextContent(text);
+    console.log(htmlContent, textContent);
   };
   let views = {
     html: true,
@@ -38,14 +42,13 @@ const WritePost = (props) => {
             <MdEditor
               style={{ height: "500px" }}
               renderHTML={(html) => mdParser.render(html)}
-              renderMd={(text) => mdParser.render(text)}
+              // renderMd={(text) => mdParser.render(text)}
               onChange={handleEditorChange}
               canView={canviews}
               view={views}
             />
           </div>
           <div className="content-right">
-            do sth
             <UploadImages />
           </div>
         </div>

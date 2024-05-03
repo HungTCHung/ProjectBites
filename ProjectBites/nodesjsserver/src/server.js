@@ -47,7 +47,7 @@ const upload = multer({
 
 app.post("/upload", upload.single("image"), (req, res) => {
   console.log(req.file);
-  console.log(req.body.userId);
+  // console.log(req.body.userId);
   let image = req.file.filename;
   let userId = req.body.userId;
 
@@ -80,6 +80,7 @@ app.post("/upload", upload.single("image"), (req, res) => {
     );
   });
 });
+
 app.get("/get-image", (req, res) => {
   return new Promise((resolve, reject) => {
     connection.query(

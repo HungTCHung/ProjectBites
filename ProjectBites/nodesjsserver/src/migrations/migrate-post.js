@@ -26,10 +26,12 @@ module.exports = {
       // sex: DataTypes.STRING,
       // phone: DataTypes.STRING,
       // groupId: DataTypes.INTEGER,
-      content: {
+      // topic: DataTypes.STRING,
+      // hashtags: DataTypes.STRING,
+      topic: {
         type: Sequelize.STRING,
       },
-      hastag: {
+      hashtags: {
         type: Sequelize.STRING,
       },
       createdAt: {
